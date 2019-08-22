@@ -30,7 +30,8 @@ class DQNAgent:
         model.add(Dense(16))
         model.add(Dense(self.action_size))
         model.compile(loss='mse', optimizer=Adam(lr=self.learning_rate))
-        model.load_weights("cartpole-dqn.h5")
+        #model.load_weights("cartpole-dqn.h5")
+        # after train first you remove '#' to load weights
         return model
 
     def remember(self, state, action, reward, next_state, done):
