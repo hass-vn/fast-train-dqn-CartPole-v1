@@ -6,9 +6,8 @@ from collections import deque
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
-import pickle
 
-EPISODES = 1000
+
 
 class DQNAgent:
     def __init__(self, state_size, action_size):
@@ -33,8 +32,6 @@ class DQNAgent:
         model.load_weights("cartpole-dqn.h5")
         return model
 
-    def remember(self, state, action, reward, next_state, done):
-        self.memory.append((state, action, reward, next_state, done))
 
     def act(self, state):
         act_values = self.model.predict(state)
@@ -60,9 +57,6 @@ class DQNAgent:
             self.epsilon *= self.epsilon_decay
         return loss
 
-
-    def save(self, name):
-        self.model.save_weights(name)
 
 
 if __name__ == "__main__":
